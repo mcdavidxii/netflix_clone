@@ -1,52 +1,25 @@
-import Row from './Row';
-import requests from './request';
-import Banner from './Banner';
-import Nav from './Nav';
-import './App.css';
+import React from 'react'
+import Landing from './screens/Landing'
+import Login from './screens/Login';
+import { BrowserRouter as Router,Routes,Route } from "react-router-dom"
+
 
 function App() {
-
-  // 49ff79ae71652e665b4084b23dd0a138 tmdb api key
+    const user = null;
   return (
-    <div className="App">
-       {/* Nav here.. */}
-       <Nav />
-       <Banner />
-        <Row
-            title= 'NETFLIX ORIGINALS'
-            fetchUrl={requests.fetchNetflixOriginals}
-            isLargeRow
-        />
-        <Row
-            title='Top Rated'
-            fetchUrl={requests.fetchTopRated}
-        />
-        <Row
-            title='Action Movies'
-            fetchUrl={requests.fetchActionMovies}
-        />
-        <Row
-            title='Comedy Movies'
-            fetchUrl={requests.fetchComedyMovies}
-        />
-        <Row
-            title=''
-            fetchUrl={requests}
-        />
-        <Row
-            title='Horror Movies'
-            fetchUrl={requests.fetchHorrorMovies}
-        />
-        <Row
-            title='Documentaries'
-            fetchUrl={requests.fetchDocumentaries}
-        />
-        <Row
-            title='Romance Movies'
-            fetchUrl={requests.fetchRomanceMovies}
-        />
+    <div className='app'>
+        <Router>
+            {!user ? (
+                <Login/>
+            ):(
+                <Routes>  
+                    <Route exact path='/' element={<Landing/>}/>
+                </Routes>
+            )}
+            
+        </Router>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
